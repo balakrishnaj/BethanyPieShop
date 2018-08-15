@@ -33,11 +33,12 @@ namespace BethanyPieShop.Controllers
             return View(homeViewModel);
         }
 
-        public ViewResult List()
+        public IActionResult Details(int id)
         {
-            //ViewBag.Title = "Pie Overview";
-            //var pies = _pieRepository.GetAllPies().OrderBy(p => p.Name);
-            return View(_pieRepository.GetAllPies());
+            var pie = _pieRepository.GetPieById(id);
+            if (pie == null) return NotFound();
+
+            return View(pie);
         }
     }
 }
